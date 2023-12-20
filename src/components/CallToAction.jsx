@@ -13,7 +13,7 @@ function CallToAction() {
             <input
               type="text"
               placeholder="example@email.com"
-              className="w-3/5 p-3 rounded-l-lg sm:w-2/3"
+              className="w-full p-3 rounded-l-lg sm:w-[35vw]"
               data-ms-editor="true"
             />
             <button
