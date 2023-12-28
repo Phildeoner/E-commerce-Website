@@ -1,6 +1,6 @@
 import BigCarousel from "./components/BigCarousel";
 import CallToAction from "./components/CallToAction";
-import Checkout from "./components/Checkout";
+import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import ImageSlide from "./components/ImageSlide";
 import NavBar from "./components/NavBar";
@@ -10,7 +10,7 @@ function App() {
     <div className="bg-[#F5F5F5] text-gray-900">
       <NavBar />
       <BigCarousel />
-      <Checkout />
+      <Cart />
       <ImageSlide />
       <CallToAction />
       <Footer />

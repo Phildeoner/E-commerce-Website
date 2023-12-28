@@ -11,7 +11,7 @@ function BigCarousel() {
             data-carousel-item>
             <div className="relative">
               <img
-                src="https://s3-alpha-sig.figma.com/img/9c09/065f/b4557a0d02f09aa7d6b6953b14d2de5a?Expires=1703462400&Signature=HWmJsWYeCpavliR1Q93DphpEJMuwYjVED7en0Dot8kpqsNui4wyziVEMgg1H8kYOiyi2xpS2HYw4V-6lr6EIaVhv1rqDTED~t3f9Vdm98td6QkmPOeHhw-YJaSzNls8OB~jNfzDXCf5~u79XQNJM5itHhZFHTaRvLhC~fdvZ1aVA2NByInHJ31LFjqhozmdul7JF8Jwxjlk31d1x2iQZh2-CwSp5RVGUSaJ7JLPPfXvNT1-UmwBL6oTZbIvbOrVc6wQQ2GfJsQYkNRKcG8WQYggnIVJR~9uAHwQlmTUPjDq8O25QF7~SX4CNlyjj~-zemJlPbkvWSE18JXGUi5ZNRw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+                src="https://s3-alpha-sig.figma.com/img/9c09/065f/b4557a0d02f09aa7d6b6953b14d2de5a?Expires=1704672000&Signature=HvwXh7JknBQVy3uMYPX-VH5fK5ysKkDzWajJEG54uqqt0h5xlh447QJj5ZL62icCWEwmLFsV--rU898sD1fAArCpeUHXpBdMc5QcTVRLlXO~KrAsq4mgvMGgSDEGOKg0ZfePlmXY9aV9mlO7RDTsSxGAsVMvTfgq51Aj1zfZe4yV2gBlKGU0R6WFxdSDRa3-wZPkDwQdYj0p~XdPjf~fJIlLkrnTbXyA7mIRw67m4STPHNBKCImMZZYypN66~F8xCDaNoAdrzHI5U-lqaKZft7Ost2NRapufeN2s2gu--VmM-HUX-A1MwnTIDmzfiFIsQabQaN5qlCzqwDt9IkEGVw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
                 className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                 alt="..."
               />
@@ -41,7 +41,7 @@ function BigCarousel() {
           <div className="hidden duration-700 ease-in-out" data-carousel-item>
             <div className="relative">
               <img
-                src="https://s3-alpha-sig.figma.com/img/f306/19b2/f975042ce39e698848f1f3037e20fe2b?Expires=1703462400&Signature=WV~4~kSsJ20EZN~ZAjk~6x6PmUw~mhWZmSMfLnSz5B0ob--6cyteNyYd6V~XfeV~4e~3iMC6E6PyCUJgZ63zskZ8rSbFpbuvL~Huh5mDB4vf~1tTwT6vOI0BRglZ58fPDD0qy2Qbwuj5XwkMwrdJfEP3HbSHDDNa-XPOtgS3wNyiX9iRrVqVD07NaRKgx8FRylV-o-gGpxlAAQ88nxLOKn4lJYK3aP6OTDaFjbcafj0xZ3WA-0IABofXRZ3EgTkgA4ooARP8QEbWIV62T05aHxN8~A6re-yNIZijtgdM-6nA9ZS2vlLWFLbcKo~ihOXIp5YBJUsUFhGmpKthrOWiRw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+                src="https://s3-alpha-sig.figma.com/img/f306/19b2/f975042ce39e698848f1f3037e20fe2b?Expires=1704672000&Signature=QdJ6Xr21~u-UyP5rDFuJm~zwVlghIFzIZB0jDoHYtpWARmWOmb8qg7HGpZxxLOKP0g-Or01sPSJCQpJggEuk3fBgkgSirSZC2bHQlGPNHcGN-d6ouGYWX-c-EpdYK9YGSn~KIBkdPJ~lZOQSbozZ43fk4aiIJMXKgqiUV7ImRgwE05fTZZT2Pa04IwkssbZpFLXmDISWNd5ZpkfbP1cDSHXx4HnuzWf6AMXudm6tmsHyVj42iaWkn0ZcQG-dRjP-cXNoLOVqxqpor4Izy9MWFwF87YoI9pLBylWe3pPbqcQx7fzEfOjEFsJMswwwv-bUNQZPVwHS-zFYxCE7c82iZQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
                 className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                 alt="..."
               />
@@ -69,7 +69,7 @@ function BigCarousel() {
           <div className="hidden duration-700 ease-in-out" data-carousel-item>
             <div className="relative">
               <img
-                src="https://s3-alpha-sig.figma.com/img/defe/32e9/9d77f7f4f1cec9d538537ac221d4d933?Expires=1703462400&Signature=E1Vwj6v~fo-nuQhUQzG22NnKBv4nl6UCb-jaHhs5byGMcH4~jOxN0o99eDuLMEg37cwd~FUxjqQBO30KOiRP-MAu9bLFIdyc5bf0VxD9rF6AesBgfswwSgNDKx25ynDlpfX4IuzVT~fZAOZ5IgBF8GAtiDBgjNRye83KoClNKdbetoJLLAHV6UmVyr9oILvNBWajSSXLcf~LAu-0HTXUqmMD9Ya1aj6ZbYvpjaclJNxekKbI2HlT009zjfzx4e9YFeZLAvDAv2NsYNeUuQgQyeYnuTWjznOWlYvPD~iNkHzEr5aDRl247Jhhq9FH85moIRq0iXyRW54wTrPFITBR4Q__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+                src="https://s3-alpha-sig.figma.com/img/defe/32e9/9d77f7f4f1cec9d538537ac221d4d933?Expires=1704672000&Signature=q0rqglUEneJUCw2vEny39r-6g1oZ-p3WoJbeo~LnP-sLzRKnYiJ826HnRRH4k0kWyIPZUPVT2z3Yf9AGi8zQtxux-Ed~VS4lOsLekoiPgDy81w-k6RzG-582mCVjcSzDSNsHmpfqLUM5Lhdu4AVXm59H8EeV3FSjL5Ifx-i4PjRCXsE-nmHwn6z4l7a4BkhihddmCHoBXuhpr6K6KkMiEb8Qnh9gh0ljODgFifQJHt7U8ZgI1fckA~zRMDmNVq5j-57BSvIEmsYXlNR5xxRXmhMwe8CPTPCce4agbyxqGPhWoX1rN55lLAnpFSZcnkBQJiFboJMjtPYg2s-PJSi0vw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
                 className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                 alt="..."
               />
