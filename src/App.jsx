@@ -1,19 +1,16 @@
-import BigCarousel from "./components/BigCarousel";
-import CallToAction from "./components/CallToAction";
-import Cart from "./components/Cart";
-import Footer from "./components/Footer";
-import ImageSlide from "./components/ImageSlide";
-import NavBar from "./components/NavBar";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import CartPage from "./pages/CartPage";
 
 function App() {
   return (
-    <div className="bg-[#F5F5F5] text-gray-900">
-      <NavBar />
-      <BigCarousel />
-      <Cart />
-      <ImageSlide />
-      <CallToAction />
-      <Footer />
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<CartPage />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

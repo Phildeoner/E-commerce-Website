@@ -1,7 +1,19 @@
 function ImageSlide() {
+  const styleSheet = `
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none; 
+      scrollbar-width: none; 
+      overflow-x: auto;
+    }
+  `;
+
   return (
     <>
-      <div className="relative w-full flex gap-4 py-6 overflow-x-auto">
+      <style>{styleSheet}</style>
+      <div className="relative w-full flex gap-4 py-6-0 hide-scrollbar">
         <img
           className="h-48 aspect-video rounded-sm object-cover object-center dark:bg-gray-500"
           src="https://s3-alpha-sig.figma.com/img/2438/62e6/926e116640ee6b332250c62e0bed2894?Expires=1704672000&Signature=m-vRF5r9Kjwh7nHWEmi4EU~d8KwmhNFBG5KgUKRDd~FBq2y6Lt6vmOqnNFOkDjfSlEQe7l19r7ikYbykVjRwogLC9lJ~KH3rwA5WH~fifK0mP4THnk4vgLm~6h6Jcrr4jsMxC8VUp7t4sVyCLvj6TXaRNQiFxA1shgLXX2FQZclAsBBlxXwa1swrFQzF1hnIDfGmgenFoGsJkwbz2CkTFjoW3v-el2G8JPXp4N7eY70jMtpTaXOqI7oJEQc6MxGIf7cGANnWGHTHQY24xeQlrgT0ycz4Ed2tqd09J25bvod4iYmavieuc4h7E6p3QKxOHJKorMC4xtdbq1X639czAw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
