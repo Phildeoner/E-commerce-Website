@@ -1,12 +1,14 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
   return (
     <>
       <footer className="px-4 bg-gradient-to-r from-[#A22634] to-[#F7D1D0] text-gray-900 divide-y ">
         <div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
           <div className="lg:w-1/3">
-            <a
+            <Link
+              to="/"
               rel="noopener noreferrer"
-              href="#"
               aria-label="Back to homepage"
               className="flex items-baseline space-x-3 lg:justify-start">
               <img src="pblogo.png" alt="" className="w-[40px] md:w-[80px]  " />
@@ -15,7 +17,7 @@ function Footer() {
                 src="/pbtextmain.png"
                 alt=""
               />
-            </a>
+            </Link>
           </div>
           <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
             <div className="space-y-3">

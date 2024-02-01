@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ShoppingCartIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
+import { useCart } from "./CartContext";
 
 // Array of generated product objects
 const products = [
@@ -101,40 +101,19 @@ const products = [
 ];
 
 function ProductList() {
-  // Initialize the cart from localStorage or set it to an empty array
-  const [cart, setCart] = useState(() => {
-    const savedCart = localStorage.getItem("cart");
-    return savedCart ? JSON.parse(savedCart) : [];
-  });
-
-  // Update localStorage whenever the cart changes
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+  const { cart, setCart } = useCart();
 
   const addToCart = (product) => {
     setCart([...cart, product]);
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="flex justify-end">
-        <div className="relative">
-          <Link to="/cart">
-            <ShoppingCartIcon className="h-6 w-6" />
-          </Link>
-          {cart.length > 0 && (
-            <span className="absolute top-0 right-0 rounded-full bg-red-600 w-4 h-4 flex items-center justify-center text-white text-xs">
-              {cart.length}
-            </span>
-          )}
-        </div>
-      </div>
+    <div className="container mx-auto mt-10 p-4">
       <div className="grid grid-cols-3 gap-4">
         {products.map((product) => (
           <motion.div
             key={product.id}
-            className="card bg-white p-4 rounded-lg shadow"
+            className="card bg-white p-4 rounded-lg shadow cursor-pointer"
             whileHover={{ scale: 1.05 }}>
             <img
               src={product.image}
@@ -148,7 +127,7 @@ function ProductList() {
                 <span className="text-lg font-bold">${product.price}</span>
                 <button
                   onClick={() => addToCart(product)}
-                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                  className="px-4 py-2 bg-[#722F37] text-white rounded hover:bg-[#722f37c5]">
                   Buy
                 </button>
               </div>

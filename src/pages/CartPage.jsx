@@ -1,9 +1,12 @@
 import CartComp from "../components/CartComp";
+import MainLayout from "../layouts/MainLayout";
 
 function CartPage() {
   return (
     <>
-      <CartComp />
+      <MainLayout>
+        <CartComp />
+      </MainLayout>
     </>
   );
 }

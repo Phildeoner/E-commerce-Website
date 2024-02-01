@@ -1,9 +1,13 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import { useCart } from "./CartContext";
+
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleButtonRef = useRef(null);
   const [isShopDropdownOpen, setIsShopDropdownOpen] = useState(false);
   const shopDropdownRef = useRef(null);
+  const { cart } = useCart();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -81,9 +85,9 @@ function NavBar() {
     <nav className="fixed top-0 z-50 w-full">
       <header className="p-4 bg-gradient-to-r from-[#722F37] to-[#E7E3E4]">
         <div className="container flex justify-between items-center h-16 mx-auto">
-          <a
+          <Link
+            to="/"
             rel="noopener noreferrer"
-            href="#"
             aria-label="Back to homepage"
             className="flex items-baseline p-2">
             <img src="pblogo.png" alt="" className="w-[40px] md:w-[80px]  " />
@@ -92,7 +96,7 @@ function NavBar() {
               src="/pbtextmain.png"
               alt=""
             />
-          </a>
+          </Link>
 
           <div className="flex items-center ">
             <div className="relative">
@@ -164,8 +168,8 @@ function NavBar() {
                 1
               </div>
             </div>
-            <div className="relative">
-              <button className="mr-2">
+            <div className="relative mt-4">
+              <Link to="/cart" className="mr-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="33"
@@ -177,10 +181,12 @@ function NavBar() {
                     fill="black"
                   />
                 </svg>
-              </button>
-              <div className="h-[15px] w-[15px] bg-[#E66B66] absolute -top-1 -right-1 rounded-full flex items-center justify-center text-[10px] font-bold">
-                1
-              </div>
+              </Link>
+              {cart.length > 0 && (
+                <div className="h-[15px] w-[15px] bg-[#E66B66] absolute -top-1 -right-1 rounded-full flex items-center justify-center text-[10px] font-bold">
+                  {cart.length}
+                </div>
+              )}
             </div>
           </div>
           <div
@@ -261,7 +267,7 @@ function NavBar() {
               <li>
                 <a
                   href="#"
-                  className="block py-2 px-3 text-gray-50 rounded  md:border-0   dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                  className="block py-2 px-3 text-gray-50 rounded  md:border-0   ">
                   About Us
                 </a>
               </li>
@@ -269,7 +275,7 @@ function NavBar() {
               <li>
                 <a
                   href="#"
-                  className="block py-2 px-3 text-gray-50 rounded  md:border-0   dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                  className="block py-2 px-3 text-gray-50 rounded  md:border-0   ">
                   Contact Us
                 </a>
               </li>
@@ -375,7 +381,7 @@ function NavBar() {
               <li>
                 <a
                   href="#"
-                  className="block py-2 px-3 text-gray-50 rounded  md:border-0   dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                  className="block py-2 px-3 text-gray-50 rounded  md:border-0   ">
                   About Us
                 </a>
               </li>
@@ -383,7 +389,7 @@ function NavBar() {
               <li>
                 <a
                   href="#"
-                  className="block py-2 px-3 text-gray-50 rounded  md:border-0   dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                  className="block py-2 px-3 text-gray-50 rounded  md:border-0   ">
                   Contact Us
                 </a>
               </li>
@@ -414,12 +420,13 @@ function NavBar() {
                   />
                 </svg>
               </button>
+
               <div className="h-[15px] w-[15px] bg-[#E66B66] absolute -top-1 -right-1 rounded-full flex items-center justify-center text-[10px] font-bold">
                 1
               </div>
             </div>
-            <div className="relative">
-              <button className="mr-2">
+            <div className="relative mt-4">
+              <Link to="/cart" className="mr-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="33"
@@ -431,10 +438,12 @@ function NavBar() {
                     fill="black"
                   />
                 </svg>
-              </button>
-              <div className="h-[15px] w-[15px] bg-[#E66B66] absolute -top-1 -right-1 rounded-full flex items-center justify-center text-[10px] font-bold">
-                1
-              </div>
+              </Link>
+              {cart.length > 0 && (
+                <div className="h-[15px] w-[15px] bg-[#E66B66] absolute -top-1 -right-1 rounded-full flex items-center justify-center text-[10px] font-bold">
+                  {cart.length}
+                </div>
+              )}
             </div>
           </div>
           <div className="md:flex gap-8 hidden">
