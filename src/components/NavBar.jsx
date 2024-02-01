@@ -78,17 +78,18 @@ function NavBar() {
   }, [isMenuOpen]);
 
   return (
-    <>
-      <header className="p-4 bg-[#E7E3E4] dark:bg-gray-800 dark:text-gray-100">
+    <nav className="fixed top-0 z-50 w-full">
+      <header className="p-4 bg-gradient-to-r from-[#722F37] to-[#E7E3E4]">
         <div className="container flex justify-between items-center h-16 mx-auto">
           <a
             rel="noopener noreferrer"
             href="#"
             aria-label="Back to homepage"
-            className="flex items-center p-2">
+            className="flex items-baseline p-2">
+            <img src="pblogo.png" alt="" className="w-[40px] md:w-[80px]  " />
             <img
-              className="w-[130px] md:w-[260.091px]  "
-              src="https://s3-alpha-sig.figma.com/img/0c32/722b/55b2e3c3690f62046ec151febb87f64d?Expires=1704672000&Signature=YNZLlWG8fe6ZLd~NIoldfBYq9-jZp7mhXeIb2-0ZdP4igC5NDRLfZBxezdGRFy8GC6L1X~1fdC6vkJTCHStDxoDvZR-0uVifbG8pmQgxzholYl1rYxdC6403KtOV47XfPz1il2qlBrAqygNfwCujjv8s~J7DYVNofaUmCaDRHrmnLYHJzb-YuZV1gROWG85ySP5cBJRaTYQwdW3-qdPCmrtQUiQDCf9SNBpUsGeVJl56Wr~Bpb0NyWQUPqs5xjU4o6M7nococIFhtvQNYAHGgjXO496li5ifX8PdLBoYfPAEMPGDuMMhvBPzeD5XH6jPPqSQ1bCeWyIzra~UbcH6Eg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+              className="w-[70px] md:w-[120px]  "
+              src="/pbtextmain.png"
               alt=""
             />
           </a>
@@ -278,7 +279,7 @@ function NavBar() {
       </header>
 
       <nav className="bg-[#A22634] border-gray-200 dark:bg-gray-900 dark:border-gray-700 ">
-        <div className="max-w-screen-xl flex flex-wrap items-center  justify-between mx-auto p-4">
+        <div className="max-w-screen-xl flex flex-wrap items-center  justify-between mx-auto p-1">
           <div className="text-white flex items-center justify-between gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -292,7 +293,7 @@ function NavBar() {
               />
             </svg>
             <p className="text-xl font-semibold">
-              Hotline: <span className="font-normal">+234 80197867</span>
+              Hotline: <span className="font-normal">+234 8103439155</span>
             </p>
           </div>
 
@@ -446,7 +447,7 @@ function NavBar() {
           </div>
         </div>
       </nav>
-    </>
+    </nav>
   );
 }
 
