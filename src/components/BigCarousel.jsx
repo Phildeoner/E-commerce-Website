@@ -41,24 +41,25 @@ function BigCarousel() {
   }, [slides.length]);
 
   const variants = {
-    enter: (direction) => {
-      return {
-        x: direction > 0 ? 1000 : -1000,
-        opacity: 0,
-      };
-    },
+    enter: (direction) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
     center: {
       zIndex: 1,
       x: 0,
       opacity: 1,
     },
-    exit: (direction) => {
-      return {
-        zIndex: 0,
-        x: direction < 0 ? 1000 : -1000,
-        opacity: 0,
-      };
-    },
+    exit: (direction) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
+  };
+
+  const transitionSettings = {
+    x: { type: "spring", stiffness: 300, damping: 30 },
+    opacity: { duration: 0.5 }, // Extended duration for a smoother fade
   };
 
   const getDirection = (newIndex) => {
@@ -80,10 +81,7 @@ function BigCarousel() {
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 },
-              }}
+              transition={transitionSettings} // Apply adjusted transition settings here
               className={`absolute inset-0 w-full h-full ${
                 index === activeSlide ? "block" : "hidden"
               }`}>
