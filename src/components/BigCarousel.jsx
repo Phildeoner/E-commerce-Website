@@ -16,14 +16,14 @@ function BigCarousel() {
     },
     {
       id: 2,
-      img: "https://traveler.marriott.com/wp-content/uploads/2020/05/sipyourway_1.jpg",
+      img: "https://assets.architecturaldigest.in/photos/6008342bb3d78db39997cec9/16:9/w_2560%2Cc_limit/Let-Awakening-inspire-your-wine-selection-1366x768.jpg",
       title: "Summer Soirée Series",
       subTitle: "New Year's Eve Celebration",
       description: "Refreshing choices for your summer Essentials",
     },
     {
       id: 3,
-      img: "https://winery.ph/cdn/shop/articles/WPH_Blog_Hero_Graphics_1.jpg?v=1620291667",
+      img: "https://images.ctfassets.net/cnu0m8re1exe/4MbhdguYJxykSRSNg4lna0/4deaa1a81bceffca683051ca409d9a80/wine.jpg",
       title: "Spiced Spirits Spectacle",
       subTitle: "New Year's Eve Celebration",
       description: "Warm Up Your Celebrations with Spiced Spirits",
@@ -35,7 +35,7 @@ function BigCarousel() {
       setActiveSlide(
         (prevActiveSlide) => (prevActiveSlide + 1) % slides.length
       );
-    }, 6000); // Change slide every 5000ms (5 seconds)
+    }, 10000);
 
     return () => clearInterval(interval);
   }, [slides.length]);
@@ -59,7 +59,7 @@ function BigCarousel() {
 
   const transitionSettings = {
     x: { type: "spring", stiffness: 300, damping: 30 },
-    opacity: { duration: 0.5 }, // Extended duration for a smoother fade
+    opacity: { duration: 0.5 },
   };
 
   const getDirection = (newIndex) => {
@@ -81,7 +81,7 @@ function BigCarousel() {
               initial="enter"
               animate="center"
               exit="exit"
-              transition={transitionSettings} // Apply adjusted transition settings here
+              transition={transitionSettings}
               className={`absolute inset-0 w-full h-full ${
                 index === activeSlide ? "block" : "hidden"
               }`}>

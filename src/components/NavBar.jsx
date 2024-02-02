@@ -9,6 +9,11 @@ function NavBar() {
   const shopDropdownRef = useRef(null);
   const { cart } = useCart();
 
+  const itemCount = cart.reduce(
+    (total, item) => total + (item.quantity || 1),
+    0
+  );
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -150,8 +155,8 @@ function NavBar() {
               </select>
             </div>
 
-            <div className="relative">
-              <button className="mr-2">
+            <div className="relative mt-3">
+              <Link to="/favourite" className="mr-2 ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="33"
@@ -163,7 +168,7 @@ function NavBar() {
                     fill="black"
                   />
                 </svg>
-              </button>
+              </Link>
               <div className="h-[15px] w-[15px] bg-[#E66B66] absolute -top-1 -right-1 rounded-full flex items-center justify-center text-[10px] font-bold">
                 1
               </div>
@@ -182,9 +187,9 @@ function NavBar() {
                   />
                 </svg>
               </Link>
-              {cart.length > 0 && (
+              {itemCount > 0 && (
                 <div className="h-[15px] w-[15px] bg-[#E66B66] absolute -top-1 -right-1 rounded-full flex items-center justify-center text-[10px] font-bold">
-                  {cart.length}
+                  {itemCount}
                 </div>
               )}
             </div>
