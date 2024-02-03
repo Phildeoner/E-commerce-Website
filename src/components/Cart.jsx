@@ -1,19 +1,57 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useCart } from "./CartContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useFavorites } from "./FavoritesContext";
 
 function Cart() {
-  const { cart, setCart } = useCart(); // Directly using global cart state
+  const { cart, setCart } = useCart();
+  const { favorites, addFavorite } = useFavorites();
 
-  const totalPrice = cart.reduce(
-    (acc, product) => acc + product.price * product.quantity,
-    0
-  );
+  const totalPrice = cart.reduce((acc, product) => {
+    const price = parseFloat(product.price);
+    const quantity = parseInt(product.quantity, 10);
+    if (isNaN(price) || isNaN(quantity)) {
+      console.error("Invalid product found", product);
+      return acc;
+    }
+    return acc + price * quantity;
+  }, 0);
 
-  // Function to update quantity; directly updates global cart state
+  const addToFavorites = (product) => {
+    const isAlreadyFavorite = favorites.some((fav) => fav.id === product.id);
+    if (isAlreadyFavorite) {
+      toast.info("This item is already in your favorites!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      const productWithDateAdded = {
+        ...product,
+        dateAdded: new Date().toISOString(),
+      };
+      addFavorite(productWithDateAdded);
+      toast.success(`${product.title} added to favorites!`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
   const updateQuantity = (index, newQuantity) => {
     const numericQuantity = parseInt(newQuantity, 10);
-    if (!isNaN(numericQuantity)) {
+    if (!isNaN(numericQuantity) && numericQuantity > 0) {
       const updatedCart = cart.map((item, i) =>
         i === index ? { ...item, quantity: numericQuantity } : item
       );
@@ -21,16 +59,42 @@ function Cart() {
     }
   };
 
-  // Function to remove item; directly updates global cart state
+  const handleCheckout = () => {
+    if (cart.length === 0 || totalPrice === 0) {
+      toast.error("Your cart is empty!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      window.location.href = "https://flutterwave.com/pay/yehm4wfm2fqg";
+    }
+  };
+
   const removeFromCart = (indexToRemove) => {
+    const productRemoved = cart[indexToRemove];
     const newCart = cart.filter((_, index) => index !== indexToRemove);
-    setCart(newCart); // Updates global state
-    localStorage.setItem("cart", JSON.stringify(newCart)); // Keep local storage in sync
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
+    toast.info(`${productRemoved.title} removed from cart!`, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   return (
     <>
       <div className="flex flex-col  p-6 space-y-6 sm:px-20 dark:bg-gray-900 dark:text-gray-100">
+        <ToastContainer />
         <h2 className="text-3xl font-semibold">Your cart</h2>
         <div className="flex justify-between">
           <img src="/cart.jpg" alt="cart" className="rounded-lg shadow-xl" />
@@ -122,14 +186,22 @@ function Cart() {
                         </div>
 
                         <button
+                          onClick={() => addToFavorites(product)}
                           type="button"
                           className="flex items-center px-2 py-1 space-x-1">
                           <svg
+                            className="w-6 h-6"
+                            aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 512 512"
-                            className="w-4 h-4 fill-current">
-                            <path d="M453.122,79.012a128,128,0,0,0-181.087.068l-15.511,15.7L241.142,79.114l-.1-.1a128,128,0,0,0-181.02,0l-6.91,6.91a128,128,0,0,0,0,181.019L235.485,449.314l20.595,21.578.491-.492.533.533L276.4,450.574,460.032,266.94a128.147,128.147,0,0,0,0-181.019ZM437.4,244.313,256.571,425.146,75.738,244.313a96,96,0,0,1,0-135.764l6.911-6.91a96,96,0,0,1,135.713-.051l38.093,38.787,38.274-38.736a96,96,0,0,1,135.765,0l6.91,6.909A96.11,96.11,0,0,1,437.4,244.313Z"></path>
+                            fill={
+                              favorites.some((fav) => fav.id === product.id)
+                                ? "red"
+                                : "currentColor"
+                            }
+                            viewBox="0 0 24 24">
+                            <path d="m12.7 20.7 6.2-7.1c2.7-3 2.6-6.5.8-8.7A5 5 0 0 0 16 3c-1.3 0-2.7.4-4 1.4A6.3 6.3 0 0 0 8 3a5 5 0 0 0-3.7 1.9c-1.8 2.2-2 5.8.8 8.7l6.2 7a1 1 0 0 0 1.4 0Z" />
                           </svg>
+
                           <span>Add to favorites</span>
                         </button>
                       </div>
@@ -159,9 +231,11 @@ function Cart() {
                   <span className="sr-only sm:not-sr-only"> to shop</span>
                 </motion.button>
               </Link>
+
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 type="button"
+                onClick={handleCheckout}
                 className="px-6 bg-[#E66B66] text-gray-100 py-2 border rounded-md dark:bg-violet-400 dark:text-gray-900 dark:border-violet-400">
                 <span className="sr-only sm:not-sr-only">Continue to </span>
                 Checkout

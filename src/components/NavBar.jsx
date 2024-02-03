@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "./CartContext";
+import { useFavorites } from "./FavoritesContext";
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -8,6 +9,7 @@ function NavBar() {
   const [isShopDropdownOpen, setIsShopDropdownOpen] = useState(false);
   const shopDropdownRef = useRef(null);
   const { cart } = useCart();
+  const { favorites } = useFavorites();
 
   const itemCount = cart.reduce(
     (total, item) => total + (item.quantity || 1),
@@ -170,7 +172,7 @@ function NavBar() {
                 </svg>
               </Link>
               <div className="h-[15px] w-[15px] bg-[#E66B66] absolute -top-1 -right-1 rounded-full flex items-center justify-center text-[10px] font-bold">
-                1
+                {favorites.length}
               </div>
             </div>
             <div className="relative mt-4">
@@ -427,7 +429,7 @@ function NavBar() {
               </button>
 
               <div className="h-[15px] w-[15px] bg-[#E66B66] absolute -top-1 -right-1 rounded-full flex items-center justify-center text-[10px] font-bold">
-                1
+                {favorites.length}
               </div>
             </div>
             <div className="relative mt-4">

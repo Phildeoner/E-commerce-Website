@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useCart } from "./CartContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-// Array of generated product objects
 const products = [
   {
     id: 1,
@@ -114,11 +115,25 @@ function ProductList() {
   const { cart, setCart } = useCart();
 
   const addToCart = (product) => {
-    setCart([...cart, product]);
+    const newProduct = {
+      ...product,
+      quantity: 1,
+    };
+    setCart([...cart, newProduct]);
+    toast.success(`${product.title} Added to Cart!`, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   return (
     <div className="container mx-auto mt-10 p-4">
+      <ToastContainer />
       <div className="grid grid-cols-3 gap-4">
         {products.map((product) => (
           <motion.div

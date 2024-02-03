@@ -11,7 +11,11 @@ function Footer() {
               rel="noopener noreferrer"
               aria-label="Back to homepage"
               className="flex items-baseline space-x-3 lg:justify-start">
-              <img src="pblogo.png" alt="" className="w-[40px] md:w-[80px]  " />
+              <img
+                src="/pblogo.png"
+                alt=""
+                className="w-[40px] md:w-[80px]  "
+              />
               <img
                 className="w-[70px] md:w-[120px]  "
                 src="/pbtextmain.png"
