@@ -6,7 +6,6 @@ import { useFavorites } from "./FavoritesContext";
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleButtonRef = useRef(null);
-  const [isShopDropdownOpen, setIsShopDropdownOpen] = useState(false);
   const shopDropdownRef = useRef(null);
   const { cart } = useCart();
   const { favorites } = useFavorites();
@@ -20,58 +19,33 @@ function NavBar() {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const toggleShopDropdown = () => {
-    setIsShopDropdownOpen(!isShopDropdownOpen);
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        shopDropdownRef.current &&
-        !shopDropdownRef.current.contains(event.target)
-      ) {
-        setIsShopDropdownOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024 && isMenuOpen) {
         setIsMenuOpen(false);
       }
     };
-
     window.addEventListener("resize", handleResize);
-
     handleResize();
-
     return () => window.removeEventListener("resize", handleResize);
   }, [isMenuOpen]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       const menu = document.getElementById("navbar-dropdown");
-
       if (
         toggleButtonRef.current &&
         toggleButtonRef.current.contains(event.target)
       ) {
         return;
       }
-
       if (menu && !menu.contains(event.target)) {
         setIsMenuOpen(false);
       }
     };
-
     if (isMenuOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -171,9 +145,11 @@ function NavBar() {
                   />
                 </svg>
               </Link>
-              <div className="h-[15px] w-[15px] bg-[#E66B66] absolute -top-1 -right-1 rounded-full flex items-center justify-center text-[10px] font-bold">
-                {favorites.length}
-              </div>
+              {favorites.length > 0 && (
+                <div className="h-[15px] w-[15px] bg-[#E66B66] absolute -top-1 -right-1 rounded-full flex items-center justify-center text-[10px] font-bold">
+                  {favorites.length}
+                </div>
+              )}
             </div>
             <div className="relative mt-4">
               <Link to="/cart" className="mr-2">
@@ -201,90 +177,30 @@ function NavBar() {
             id="navbar-dropdown">
             <ul className="flex  flex-col font-medium p-4 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/"
                   className="block py-2 px-3 text-white rounded md:bg-transparent  "
                   aria-current="page">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <button
-                  id="dropdownNavbarLink"
-                  data-dropdown-toggle="dropdownNavbar"
-                  onClick={toggleShopDropdown}
-                  className="flex items-center justify-between w-full py-2 px-3 text-gray-50 rounded  md:border-0   md:w-auto dark:text-white  dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
-                  Shop{" "}
-                  <svg
-                    className="w-2.5 h-2.5 ms-2.5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 10 6">
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="m1 1 4 4 4-4"
-                    />
-                  </svg>
-                </button>
-
-                <div
-                  ref={shopDropdownRef}
-                  id="dropdownNavbar"
-                  className={`z-10 ${
-                    isShopDropdownOpen ? "" : "hidden"
-                  } font-normal  divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600`}>
-                  <ul
-                    className="py-2 text-sm text-gray-700 dark:text-gray-400"
-                    aria-labelledby="dropdownLargeButton">
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-[#A22634] dark:hover:bg-gray-600 dark:hover:text-white">
-                        Shop
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-[#A22634] dark:hover:bg-gray-600 dark:hover:text-white">
-                        Settings
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-[#A22634] dark:hover:bg-gray-600 dark:hover:text-white">
-                        Earnings
-                      </a>
-                    </li>
-                  </ul>
-                  <div className="py-1">
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#A22634] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                      Sign out
-                    </a>
-                  </div>
-                </div>
+                <Link
+                  className="block py-2 px-3 text-white rounded md:bg-transparent  "
+                  aria-current="page">
+                  Shop
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="block py-2 px-3 text-gray-50 rounded  md:border-0   ">
+                <Link className="block py-2 px-3 text-gray-50 rounded  md:border-0   ">
                   About Us
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
-                  href="#"
-                  className="block py-2 px-3 text-gray-50 rounded  md:border-0   ">
+                <Link className="block py-2 px-3 text-gray-50 rounded  md:border-0   ">
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -315,90 +231,30 @@ function NavBar() {
             id="navbar-dropdown">
             <ul className="flex flex-col font-medium p-4  mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md: dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/"
                   className="block py-2 px-3 text-white rounded md:bg-transparent  "
                   aria-current="page">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="relative">
-                <button
-                  id="dropdownNavbarLink"
-                  onClick={toggleShopDropdown}
-                  data-dropdown-toggle="dropdownNavbar"
-                  className="flex items-center justify-between w-full py-2 px-3 text-gray-50 rounded  md:border-0   md:w-auto dark:text-white  dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
-                  Shop{" "}
-                  <svg
-                    className="w-2.5 h-2.5 ms-2.5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 10 6">
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="m1 1 4 4 4-4"
-                    />
-                  </svg>
-                </button>
-
-                <div
-                  ref={shopDropdownRef}
-                  id="dropdownNavbar"
-                  className={`z-40 ${
-                    isShopDropdownOpen ? "" : "hidden"
-                  } font-normal absolute divide-y divide-gray-100  rounded-lg shadow w-44 dark:bg-gray-900 dark:divide-gray-600`}>
-                  <ul
-                    className="py-2 text-sm text-gray-200 dark:text-gray-400"
-                    aria-labelledby="dropdownLargeButton">
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-[#A22634] dark:hover:bg-gray-600 dark:hover:text-white">
-                        Shop
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-[#A22634] dark:hover:bg-gray-600 dark:hover:text-white">
-                        Settings
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-[#A22634] dark:hover:bg-gray-600 dark:hover:text-white">
-                        Earnings
-                      </a>
-                    </li>
-                  </ul>
-                  <div className="py-1">
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-white hover:bg-[#A22634] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                      Sign out
-                    </a>
-                  </div>
-                </div>
+                <Link
+                  className="block py-2 px-3 text-white rounded md:bg-transparent  "
+                  aria-current="page">
+                  Shop
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="block py-2 px-3 text-gray-50 rounded  md:border-0   ">
+                <Link className="block py-2 px-3 text-gray-50 rounded  md:border-0   ">
                   About Us
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
-                  href="#"
-                  className="block py-2 px-3 text-gray-50 rounded  md:border-0   ">
+                <Link className="block py-2 px-3 text-gray-50 rounded  md:border-0   ">
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -413,8 +269,8 @@ function NavBar() {
                 <option value="GBP">GBP</option>
               </select>
             </div>
-            <div className="relative">
-              <button className="mr-2">
+            <div className="relative mt-3">
+              <Link to="/favourite" className="mr-2 ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="33"
@@ -426,11 +282,13 @@ function NavBar() {
                     fill="black"
                   />
                 </svg>
-              </button>
+              </Link>
 
-              <div className="h-[15px] w-[15px] bg-[#E66B66] absolute -top-1 -right-1 rounded-full flex items-center justify-center text-[10px] font-bold">
-                {favorites.length}
-              </div>
+              {favorites.length > 0 && (
+                <div className="h-[15px] w-[15px] bg-[#E66B66] absolute -top-1 -right-1 rounded-full flex items-center justify-center text-[10px] font-bold">
+                  {favorites.length}
+                </div>
+              )}
             </div>
             <div className="relative mt-4">
               <Link to="/cart" className="mr-2">
