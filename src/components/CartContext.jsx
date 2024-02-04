@@ -9,10 +9,10 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem("cart");
     const initialCart = savedCart ? JSON.parse(savedCart) : [];
-    // Ensure each item has a 'quantity' property
     return initialCart.map((item) => ({
       ...item,
-      quantity: item.quantity || 1,
+      quantity: parseInt(item.quantity, 10) || 1,
+      price: parseFloat(item.price),
     }));
   });
 
