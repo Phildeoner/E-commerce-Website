@@ -2,11 +2,12 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "./CartContext";
 import { useFavorites } from "./FavoritesContext";
+import { useCurrency } from "./CurrencyContext";
 
 function NavBar() {
+  const { currency, updateCurrency } = useCurrency();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleButtonRef = useRef(null);
-  const shopDropdownRef = useRef(null);
   const { cart } = useCart();
   const { favorites } = useFavorites();
 
@@ -14,6 +15,43 @@ function NavBar() {
     (total, item) => total + (item.quantity || 1),
     0
   );
+
+  const formatCurrency = (currencyCode) => {
+    switch (currencyCode) {
+      case "NGN":
+        return { code: "NGN", symbol: "₦" };
+      case "USD":
+        return { code: "USD", symbol: "$" };
+      case "EUR":
+        return { code: "EUR", symbol: "€" };
+      case "GBP":
+        return { code: "GBP", symbol: "£" };
+      default:
+        return { code: "NGN", symbol: "₦" };
+    }
+  };
+
+  const handleCurrencyChange = async (event) => {
+    const { code, symbol } = formatCurrency(event.target.value);
+
+    const apiKey = import.meta.env.VITE_API_KEY;
+    const url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${code}`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (data.result === "success") {
+        console.log(data);
+        const rate = data.conversion_rates[code];
+        updateCurrency(code, symbol, rate);
+      } else {
+        console.error("Failed to fetch conversion rate:", data.error);
+      }
+    } catch (error) {
+      console.error("Error fetching currency conversion rate:", error);
+    }
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -123,11 +161,13 @@ function NavBar() {
             <div className="relative">
               <select
                 className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-gray-500"
-                id="currency">
-                <option value="NGN">NGN</option>
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="GBP">GBP</option>
+                id="currency"
+                value={currency.code}
+                onChange={handleCurrencyChange}>
+                <option value="NGN">₦ NGN</option>
+                <option value="USD">$ USD</option>
+                <option value="EUR">€ EUR</option>
+                <option value="GBP">£ GBP</option>
               </select>
             </div>
 
@@ -261,12 +301,14 @@ function NavBar() {
           <div className="flex items-center lg:hidden justify-between gap-7">
             <div className="relative">
               <select
-                className="block border-none w-full bg-[#A22634] text-white py-3 px-4 pr-8 rounded "
-                id="currency">
-                <option value="NGN">NGN</option>
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="GBP">GBP</option>
+                className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-gray-500"
+                id="currency"
+                value={currency.code}
+                onChange={handleCurrencyChange}>
+                <option value="NGN">₦ NGN</option>
+                <option value="USD">$ USD</option>
+                <option value="EUR">€ EUR</option>
+                <option value="GBP">£ GBP</option>
               </select>
             </div>
             <div className="relative mt-3">

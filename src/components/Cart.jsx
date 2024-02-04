@@ -4,10 +4,12 @@ import { useCart } from "./CartContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFavorites } from "./FavoritesContext";
+import { useCurrency } from "./CurrencyContext";
 
 function Cart() {
   const { cart, setCart } = useCart();
   const { favorites, addFavorite } = useFavorites();
+  const { currency } = useCurrency();
 
   const totalPrice = cart.reduce((acc, product) => {
     const price = parseFloat(product.price);
@@ -16,7 +18,7 @@ function Cart() {
       console.error("Invalid product found", product);
       return acc;
     }
-    return acc + price * quantity;
+    return acc + price * quantity * currency.rate;
   }, 0);
 
   const addToFavorites = (product) => {
@@ -121,10 +123,15 @@ function Cart() {
                         </div>
                         <div className="text-right">
                           <p className="text-lg font-semibold">
-                            ₦ {(product.price * product.quantity).toFixed(2)}
+                            {currency.symbol}
+                            {(
+                              product.price *
+                              product.quantity *
+                              currency.rate
+                            ).toFixed(2)}
                           </p>
                           <p className="text-sm line-through dark:text-gray-600">
-                            ₦ {product.discount}
+                            {currency.symbol} {product.discount}
                           </p>
                         </div>
                       </div>
@@ -214,7 +221,8 @@ function Cart() {
               <p>
                 Total Amount:
                 <span className="text-xl ml-2 font-bold">
-                  ₦ {totalPrice.toFixed(2)}
+                  {currency.symbol}
+                  {totalPrice.toFixed(2)}
                 </span>
               </p>
               <p className="text-sm dark:text-gray-400">
