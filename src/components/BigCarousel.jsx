@@ -9,7 +9,7 @@ function BigCarousel() {
   const slides = [
     {
       id: 1,
-      img: "https://proteafinancial.com/wp-content/uploads/2022/08/Protea-Financial-8.11.22B-2-1080x500-1.jpg",
+      img: "https://g5-assets-cld-res.cloudinary.com/image/upload/x_0,y_110,h_730,w_1295,c_crop/q_auto,f_auto,fl_lossy,c_fill,g_center,h_406,w_720/v1702049383/g5/g5-c-1t5t8rc1-storquest-self-storage/g5-cl-53cq4vlra-storquest-self-storage/services/wine_y1rwr1.png",
       title: "Frosty Elegance Extravaganza",
       subTitle: "New Year's Eve Celebration",
       description: "Toast to New Beginnings",
@@ -72,7 +72,7 @@ function BigCarousel() {
   return (
     <>
       <div className="relative w-full">
-        <div className="relative h-56 overflow-hidden md:h-[75vh]">
+        <div className="relative h-96 overflow-hidden md:h-[75vh]">
           {slides.map((slide, index) => (
             <motion.div
               key={slide.id}
@@ -91,17 +91,21 @@ function BigCarousel() {
                 alt=""
               />
               <div className="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50"></div>
-              <div className="absolute top-[130px] left-[163px] text-white">
-                <p className="text-[30px] font-semibold">{slide.title}</p>
-                <h1 className="text-[61px] font-bold">{slide.subTitle}</h1>
-                <h3 className="text-[40px] font-semibold">
+              <div className="absolute top-28 px-6 md:top-[130px] md:left-[163px] text-white">
+                <p className="text-[20px] md:text-[30px] font-semibold">
+                  {slide.title}
+                </p>
+                <h1 className="text-[25px] md:text-[61px] font-bold">
+                  {slide.subTitle}
+                </h1>
+                <h3 className="text-[16px] md:text-[40px] font-semibold">
                   {slide.description}
                 </h3>
                 <div className="flex gap-10 mt-10">
-                  <button className="p-3 bg-[#E66B66] rounded-lg text-white">
+                  <button className="px-3 py-2 md:py-3 bg-[#E66B66] hover:bg-[#B0A4A7] rounded-lg text-white">
                     Sign In
                   </button>
-                  <button className="py-3 px-5 bg-[#B0A4A7] rounded-lg text-white">
+                  <button className="px-3 py-2 md:py-3 bg-[#B0A4A7] hover:bg-[#E66B66] rounded-lg text-white">
                     Register
                   </button>
                 </div>

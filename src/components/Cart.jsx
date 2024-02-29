@@ -99,8 +99,12 @@ function Cart() {
         <ToastContainer />
         <h2 className="text-3xl font-semibold">Your cart</h2>
         <div className="flex justify-between">
-          <img src="/cart.jpg" alt="cart" className="rounded-lg shadow-xl" />
-          <div className="w-[50%]">
+          <img
+            src="/cart.jpg"
+            alt="cart"
+            className="rounded-lg shadow-xl hidden md:block"
+          />
+          <div className="md:w-[50%]">
             <ul className="flex flex-col divide-y dark:divide-gray-700">
               {cart.map((product, index) => (
                 <li
@@ -135,61 +139,63 @@ function Cart() {
                           </p>
                         </div>
                       </div>
-                      <div className="flex text-sm divide-x">
-                        <button
-                          onClick={() => removeFromCart(index)}
-                          type="button"
-                          className="flex items-center px-2 py-1 pl-0 space-x-1">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 512 512"
-                            className="w-4 h-4 fill-current">
-                            <path d="M96,472a23.82,23.82,0,0,0,23.579,24H392.421A23.82,23.82,0,0,0,416,472V152H96Zm32-288H384V464H128Z"></path>
-                            <rect
-                              width="32"
-                              height="200"
-                              x="168"
-                              y="216"></rect>
-                            <rect
-                              width="32"
-                              height="200"
-                              x="240"
-                              y="216"></rect>
-                            <rect
-                              width="32"
-                              height="200"
-                              x="312"
-                              y="216"></rect>
-                            <path d="M328,88V40c0-13.458-9.488-24-21.6-24H205.6C193.488,16,184,26.542,184,40V88H64v32H448V88ZM216,48h80V88H216Z"></path>
-                          </svg>
-                          <span>Remove</span>
-                        </button>
+                      <div className="flex flex-col md:flex-row text-sm divide-x">
+                        <div className="flex items-center space-x-1">
+                          <button
+                            onClick={() => removeFromCart(index)}
+                            type="button"
+                            className="flex items-center px-2 py-1 pl-0 space-x-1">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 512 512"
+                              className="w-4 h-4 fill-current">
+                              <path d="M96,472a23.82,23.82,0,0,0,23.579,24H392.421A23.82,23.82,0,0,0,416,472V152H96Zm32-288H384V464H128Z"></path>
+                              <rect
+                                width="32"
+                                height="200"
+                                x="168"
+                                y="216"></rect>
+                              <rect
+                                width="32"
+                                height="200"
+                                x="240"
+                                y="216"></rect>
+                              <rect
+                                width="32"
+                                height="200"
+                                x="312"
+                                y="216"></rect>
+                              <path d="M328,88V40c0-13.458-9.488-24-21.6-24H205.6C193.488,16,184,26.542,184,40V88H64v32H448V88ZM216,48h80V88H216Z"></path>
+                            </svg>
+                            <span>Remove</span>
+                          </button>
 
-                        <div className="flex items-center">
-                          <p className="font-bold">QTY:</p>
-                          <button
-                            className="px-2 ml-2 bg-red-600 text-white"
-                            onClick={() =>
-                              updateQuantity(
-                                index,
-                                Math.max(1, product.quantity - 1)
-                              )
-                            }>
-                            -
-                          </button>
-                          <span className="mx-2 text-xl font-bold">
-                            {product.quantity}
-                          </span>
-                          <button
-                            className="px-2 bg-red-600 text-white"
-                            onClick={() =>
-                              updateQuantity(
-                                index,
-                                Math.min(3, product.quantity + 1)
-                              )
-                            }>
-                            +
-                          </button>
+                          <div className="flex items-center">
+                            <p className="font-bold">QTY:</p>
+                            <button
+                              className="px-2 ml-2 bg-red-600 text-white"
+                              onClick={() =>
+                                updateQuantity(
+                                  index,
+                                  Math.max(1, product.quantity - 1)
+                                )
+                              }>
+                              -
+                            </button>
+                            <span className="mx-2 text-xl font-bold">
+                              {product.quantity}
+                            </span>
+                            <button
+                              className="px-2 bg-red-600 text-white"
+                              onClick={() =>
+                                updateQuantity(
+                                  index,
+                                  Math.min(3, product.quantity + 1)
+                                )
+                              }>
+                              +
+                            </button>
+                          </div>
                         </div>
 
                         <button

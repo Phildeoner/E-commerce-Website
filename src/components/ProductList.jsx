@@ -134,7 +134,7 @@ function ProductList() {
   return (
     <div className="container mx-auto mt-10 p-4">
       <ToastContainer />
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {products.map((product) => (
           <motion.div
             key={product.id}
@@ -143,12 +143,12 @@ function ProductList() {
             <img
               src={product.image}
               alt={product.title}
-              className="h-80 w-full object-contain rounded-t-lg"
+              className="h-40 md:h-80 w-full object-contain rounded-t-lg"
             />
             <div className="p-4">
-              <h3 className="text-lg font-bold">{product.title}</h3>
-              <p className="text-gray-600">{product.description}</p>
-              <div className="flex justify-between items-center mt-4">
+              <h3 className="text-md md:text-lg font-bold">{product.title}</h3>
+              <p className="text-gray-600 ">{product.description}</p>
+              <div className="flex justify-between md:items-center flex-col md:flex-row mt-4">
                 <span className="text-lg font-bold">₦ {product.price}</span>
                 <button
                   onClick={() => addToCart(product)}
