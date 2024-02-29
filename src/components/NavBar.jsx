@@ -102,7 +102,7 @@ function NavBar() {
 
   return (
     <nav className="fixed top-0 z-50 w-full">
-      <header className="p-4 bg-gradient-to-r from-[#722F37] to-[#E7E3E4]">
+      <header className="md:p-4 bg-gradient-to-r from-[#722F37] to-[#E7E3E4]">
         <div className="container flex justify-between items-center h-16 mx-auto">
           <Link
             to="/"
@@ -123,13 +123,13 @@ function NavBar() {
                 type="search"
                 name="Search"
                 placeholder="Search..."
-                className="w-[40vw] py-2 px-3 text-sm rounded-l-md md:w-[30vw] focus:outline-none dark:bg-gray-800 dark:text-gray-100 focus:dark:bg-gray-900"
+                className="w-[35vw] py-2 px-3 text-sm rounded-l-md md:w-[30vw] focus:outline-none dark:bg-gray-800 dark:text-gray-100 focus:dark:bg-gray-900"
                 data-ms-editor="true"
               />
             </div>
             <button
               type="button"
-              className=" text-gray-50 px-6 py-[9px] bg-[#A22634] font-semibold rounded-r-md  dark:bg-violet-400 dark:text-gray-900">
+              className=" text-gray-50 px-2 md:px-6 py-[8px] md:py-[9px] bg-[#A22634] font-semibold rounded-r-md  dark:bg-violet-400 dark:text-gray-900">
               <svg
                 fill="currentColor"
                 viewBox="0 0 512 512"
@@ -248,12 +248,11 @@ function NavBar() {
       </header>
 
       <nav className="bg-[#A22634] border-gray-200 dark:bg-gray-900 dark:border-gray-700 ">
-        <div className="max-w-screen-xl flex flex-wrap items-center  justify-between mx-auto p-1">
+        <div className="max-w-screen-xl flex flex-wrap items-center  justify-between mx-auto px-2 md:px-0 p-1">
           <div className="text-white flex items-center justify-between gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
+              className="h-[20px] w-[20px] md:w-[32px] md:h-[32px]"
               viewBox="0 0 32 32"
               fill="none">
               <path
@@ -261,8 +260,11 @@ function NavBar() {
                 fill="white"
               />
             </svg>
-            <p className="text-xl font-semibold">
-              Hotline: <span className="font-normal">+234 8103439155</span>
+            <p className="text-[12px] md:text-xl font-semibold">
+              Hotline:{" "}
+              <span className="text-[12px] md:text-xlfont-normal">
+                +234 8103439155
+              </span>
             </p>
           </div>
 
@@ -298,10 +300,10 @@ function NavBar() {
               </li>
             </ul>
           </div>
-          <div className="flex items-center lg:hidden justify-between gap-7">
+          <div className="flex items-center lg:hidden justify-between gap-4 md:gap-7">
             <div className="relative">
               <select
-                className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-gray-500"
+                className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 px-1 py-1 md:py-3 md:px-4 md:pr-8 rounded leading-tight focus:outline-none focus:border-gray-500"
                 id="currency"
                 value={currency.code}
                 onChange={handleCurrencyChange}>
@@ -315,8 +317,7 @@ function NavBar() {
               <Link to="/favourite" className="mr-2 ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="33"
-                  height="32"
+                  className="w-5 h-5 md:w-8 md:h-8 mt-0.5"
                   viewBox="0 0 33 32"
                   fill="none">
                   <path
@@ -336,8 +337,7 @@ function NavBar() {
               <Link to="/cart" className="mr-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="33"
-                  height="32"
+                  className="w-5 h-5 md:w-8 md:h-8 "
                   viewBox="0 0 33 32"
                   fill="none">
                   <path
